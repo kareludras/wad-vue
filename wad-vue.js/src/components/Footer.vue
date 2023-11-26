@@ -18,6 +18,7 @@ footer {
     width: 100%;
     bottom: 0;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 footer p {

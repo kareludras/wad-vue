@@ -6,7 +6,6 @@
         <router-link to="/signup" class="nav-link">Sign up</router-link>
       </nav>
     </header>
-    <router-view />
   </template>
 
 <style scoped>
