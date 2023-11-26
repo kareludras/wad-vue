@@ -1,8 +1,11 @@
 <template id="posts">
   <body>
     <div class="post-header">
-      <div class="user">
-        <p>{{ post.createtime }}</p>
+      <div>
+      <img v-if="post.profilepic" :src="post.profilepic" alt="Profile picture" class="profilepic">
+      <p>{{ post.createtime }}</p>
+      <p class="user">{{ post.user }}</p>
+
     </div>
     <div id="posts">
     <img v-if="post.image" :src="post.image" alt="Post image" class="post-image">
@@ -10,7 +13,7 @@
     </div>
     <div class="post-interactions">
       <img :src="require('@/assets/like.png')" alt="Like" class="like-button" @click="likePost(post.id)">
-      <span class="likeCounter">{{ post.likes }} likes</span>
+      <p class="likeCounter">{{ post.likes }} likes</p>
     </div>
   </div>
   </body>
@@ -90,12 +93,23 @@ body {
 
 .like-button {
   max-width: 20px;
-  padding: 15px;
+  padding: 5px;
 }
 
 .likeCounter {
   align-items: center;
   margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.profilepic {
+  max-width: 35px;
+  margin: 5px;
+}
+
+.user {
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 </style>
