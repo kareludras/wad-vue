@@ -92,10 +92,14 @@ section {
 }
 
 .resetLikesButton {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    padding: 100px;
+    margin-top: -40px;
+    padding: 20px;
+    margin-bottom: 30px;
 }
+
 
 .resetLikes {
     align-items: center;

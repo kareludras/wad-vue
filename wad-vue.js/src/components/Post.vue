@@ -10,7 +10,7 @@
     </div>
     <div class="post-interactions">
       <img :src="require('@/assets/like.png')" alt="Like" class="like-button" @click="likePost(post.id)">
-      <span>{{ post.likes }} likes</span>
+      <span class="likeCounter">{{ post.likes }} likes</span>
     </div>
   </div>
   </body>
@@ -89,7 +89,13 @@ body {
 }
 
 .like-button {
-  max-width: 50px;
+  max-width: 20px;
+  padding: 15px;
+}
+
+.likeCounter {
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 </style>
