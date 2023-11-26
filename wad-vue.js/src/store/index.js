@@ -1,14 +1,32 @@
-import { createStore } from 'vuex'
+import Vuex from 'vuex';
+import posts from '@/assets/data.json';
 
-export default createStore({
+export default new Vuex.Store({
   state: {
-  },
-  getters: {
+    posts: posts
   },
   mutations: {
+    likePost(state, idOfPost) {
+      const post = state.posts.find(post => post.id === idOfPost);
+      if (post) {
+        post.likes++;
+      }
+    },
+    resetLikes(state) {
+      state.posts.forEach(post => {
+        post.likes = 0;
+      });
+    }
   },
   actions: {
+    likePost({ commit }, idOfPost) {
+      commit('likePost', idOfPost);
+    },
+    resetLikes({ commit }) {
+      commit('resetLikes');
+    }
   },
-  modules: {
+  getters: {
+    getPosts: state => state.posts
   }
-})
+});
