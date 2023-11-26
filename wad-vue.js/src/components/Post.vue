@@ -37,34 +37,18 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 
-section {
-    display: flex; 
-    justify-content: space-around; 
-    min-height: 400px; 
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-.posts {
-    width: auto; 
-    padding: 20px; 
-     
-    display: flex; 
-    flex-direction: column; 
-    max-width: 700px;
-    border-top: 15px #fff7eb solid;
-    border-radius: 5%;
-    
-}
-
 body {
     align-items: center;
     display: flex;
     flex-direction: column;
     margin: 0;
     margin-bottom: 35px;
-    background-color: #f5e1c4; 
+    background-color: #f5e1c4;
+    width: auto; 
+    padding: 20px; 
+    max-width: 700px;
+    border-top: 15px #fff7eb solid;
+    border-radius: 5%;
 }
 
 .post-header-actions {

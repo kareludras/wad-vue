@@ -1,9 +1,7 @@
 <template>
   <div class = "body">
-    <div class="section">
-       <div class="posts">
-            <Post v-for="post in getPosts" :key="post.id" :post="post" />
-        </div>
+    <div class="posts">
+        <Post v-for="post in getPosts" :key="post.id" :post="post" />
     </div>
   </div>
   <div class="resetLikesButton">
@@ -35,28 +33,6 @@ export default {
 
 
 <style scoped>
-section {
-    display: flex; 
-    justify-content: space-around; 
-    min-height: 400px; 
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 15px;
-    
-    
-    
-}
-
-.posts {
-    width: auto; 
-    padding: 20px; 
-    
-    display: flex; 
-    flex-direction: column; 
-    max-width: 700px;
-    border-top: 15px #fff7eb solid;
-    border-radius: 5%;
-}
 
 .body {
     display: flex;
@@ -65,30 +41,6 @@ section {
     margin: 0;
     margin-bottom: 35px;
     align-items: center;
-    
-}
-
-.post-header-actions {
-    display: flex;
-    max-width: 50px; 
-}
-
-.post-image {
-    display: flex;
-    min-width: 320px;
-    max-width: 330px;
-}
-
-.post-content {
-    display: flex;
-    max-width: 330px;
-    
-    
-}
-
-.post-image ~ .post-content {
-    -webkit-text-size-adjust: auto;
-    font-family: 'Young Serif', serif;
 }
 
 .resetLikesButton {
