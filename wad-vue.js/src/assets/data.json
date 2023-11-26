@@ -5,7 +5,7 @@
         "user": "Mr unknown",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "content": "New profile pic!!!",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -14,7 +14,7 @@
         "user": "Ben Burton",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/python.png?raw=true",
         "content": "Managed to master this language!",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -23,15 +23,16 @@
         "user": "Joseph Duncan",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/java.png?raw=true",
         "content": "Interesting language!",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
         "id": 3,
+        "createtime": "22. October 2022",
         "user": "Zane Wallace",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/javascript.png?raw=true",
         "content": "Managed to master this language!",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -40,7 +41,7 @@
         "user": "Ted Hudson",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/html.png?raw=true",
         "content": "Managed to master this not a programming language!",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -49,7 +50,7 @@
         "user": "Mr Arthur",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/arthur.png?raw=true",
         "content": "Got this new overpowered weapon skin in Counter Strike 2",
-        "profilepic": "src\\img\\pickle.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -58,7 +59,7 @@
         "user": "Noble csgo",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/bluegem.png?raw=true",
         "content": "For sale price is negotiable",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -67,7 +68,7 @@
         "user": "budget trader",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/waterelemental.png?raw=true",
         "content": "this is nice",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {
@@ -76,7 +77,7 @@
         "user": "Broky",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/dlore.png?raw=true",
         "content": "Best achivement of my career",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     },
     {   
@@ -85,7 +86,7 @@
         "user": "Lucky gambler",
         "image": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/ak.png?raw=true",
         "content": "just opened this",
-        "profilepic": "src\\img\\default-photo.png",
+        "profilepic": "https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true",
         "likes": 0
     }
 ]
