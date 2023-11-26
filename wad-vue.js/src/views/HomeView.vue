@@ -1,31 +1,11 @@
 <template>
   <div>
-    <header>
-      <nav>
-        <router-link to="/">Home</router-link>
-        <span>|</span>
-        <router-link to="/addPost">Add Post</router-link>
-      </nav>
-
-      <figure class="headerImage">
-        
-      </figure>
-
-      <div class="dropdownContent">
-        <p>{{ user.name }}</p>
-        <p>{{ user.email }}</p>
-        <router-link to="/logout">Logout</router-link>
-      </div>
-    </header>
-
     <section>
       <div id="posts-container">
       <!-- Posts go here -->
       </div>
       
     </section>
-    <!-- Post import -->
-    <footer></footer>
   </div>
 </template>
 
