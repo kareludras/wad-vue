@@ -7,7 +7,7 @@
   </div>
   <div class="buttonsField">
     <router-link to="/addpost" class="Buttons">Add Post</router-link>
-    <button class="Buttons">Delete All</button>
+    <button class="Buttons" @click="DeleteAll">Delete All</button>
   </div>
 </template>
 
@@ -38,25 +38,34 @@ export default {
     ...mapActions(['resetLikes']) ,
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
-          credentials: 'include', //  Don't forget to specify this if you need cookies
+        credentials: 'include',
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
-        this.$router.push("/login");
-        //location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error logout");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          console.log('jwt removed');
+          this.$router.push("/login");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error logout");
+        });
+    },
+    DeleteAll() {
+      try {
+        fetch('http://localhost:3000/auth/deleteall', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log('All posts deleted successfully');
+        location.assign("/");
+      } catch (error) {
+        console.error('Error occurred when deleting posts:', error.message);
+      }
     },
   },
-
-  
-
     mounted() {
         fetch('https://jsonplaceholder.typicode.com/posts')
         .then((response) => response.json())

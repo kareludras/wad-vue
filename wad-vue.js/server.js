@@ -125,3 +125,13 @@ app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });
+
+app.delete('/auth/deleteall', async (req, res) => {
+    try {
+        const result = await pool.query('DELETE FROM posts');
+        res.json({ success: true, message: 'All posts deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting posts:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
