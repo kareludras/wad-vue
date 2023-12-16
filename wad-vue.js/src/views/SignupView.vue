@@ -20,17 +20,9 @@
       </div>
 
       <div class="signUp">
-        <button class="signUpButton" type="submit" :disabled="!isPasswordValid">Sign Up</button>
+        <button class="signUpButton" type="submit" :disabled="!areFieldsValid">Sign Up</button>
       </div>
     </form>
-    <div class="errors">
-      <div v-if="!isLengthValid">Password should be between 8 and 15 characters.</div>
-      <div v-if="!isUpperCaseValid">Password should contain at least one uppercase character.</div>
-      <div v-if="!isTwoLowerCaseValid">Password should contain at least two lowercase characters.</div>
-      <div v-if="!isNumberValid">Password should contain at least one numeric character.</div>
-      <div v-if="!isStartUpperCaseValid">Password should start with an uppercase character.</div>
-      <div v-if="!includesUnderscore">Password should include an underscore.</div>
-    </div>
   </div>
 </template>
 
@@ -40,14 +32,10 @@ export default {
     return {
       email: '',
       password: '',
-      isPasswordValid: false,
+      areFieldsValid: false,
 
-      isLengthValid: false,
-      isUpperCaseValid: false,
-      isTwoLowerCaseValid: false,
-      isNumberValid: false,
-      isStartUpperCaseValid: false,
-      includesUnderscore: false,
+      isPasswordLengthValid: false,
+      isEmailLengthValid: false,
     };
   },
   methods: {
@@ -57,21 +45,11 @@ export default {
       }
     },
     checkFields() {
-      this.isLengthValid = this.password.length >= 8 && this.password.length < 15;
-      this.isUpperCaseValid = /[A-Z]/.test(this.password);
-      this.isTwoLowerCaseValid = /[a-z].*[a-z]/.test(this.password);
-      this.isNumberValid = /\d/.test(this.password);
-      this.isStartUpperCaseValid = /^[A-Z]/.test(this.password);
-      this.includesUnderscore = this.password.includes('_');
+      this.isPasswordLengthValid = this.password.length > 0;
+      this.isEmailLengthValid = this.email.length > 0;
       
-      
-      this.isPasswordValid =
-        this.isLengthValid &&
-        this.isUpperCaseValid &&
-        this.isTwoLowerCaseValid &&
-        this.isNumberValid &&
-        this.isStartUpperCaseValid &&
-        this.includesUnderscore;
+      this.areFieldsValid = this.isPasswordLengthValid && this.isEmailLengthValid;
+  
     },
   },
 };
@@ -79,16 +57,6 @@ export default {
 
 
 <style scoped>
-.errors {
-  height: fit-content;       /* 23VH for vana*/
-  color: red;
-  text-align: center;
-  padding-bottom:45px;
-}
-.errors div{
-  margin-top:7px;
-  font-weight: bold;
-}
 
 .signUpView{
     display: flex;
@@ -140,6 +108,7 @@ export default {
   width: 30vw;
   min-width: 260px;
 }
+
 label{
   margin-right: 30%;
   width: 5px;

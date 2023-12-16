@@ -1,11 +1,13 @@
 <template>
   <div class = "body">
+    <button class="Buttons">Log Out</button>
     <div class="posts">
       <Post v-for="post in getPosts" :key="post.id" :post="post" />
     </div>
   </div>
-  <div class="resetLikesButton">
-    <button @click="resetLikes">Reset likes</button>
+  <div class="buttonsField">
+    <router-link to="/addpost" class="Buttons">Add Post</router-link>
+    <button class="Buttons">Delete All</button>
   </div>
 </template>
 
@@ -42,23 +44,50 @@ export default {
     margin-bottom: 35px;
     align-items: center;
 }
+.body button{
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
 
-.resetLikesButton {
+.buttonsField {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex-direction: row;
+
     margin-top: -50px;
     padding: 20px;
     margin-bottom: 50px;
 }
-.resetLikesButton button{
+
+button{
+	border: none;
+	font: inherit;
+	cursor: pointer;
+}
+
+.Buttons{
+  display: inline-block;
   background-color:rgb(187, 169, 136);
-  padding: 5px;
-  width: 100px;
+
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 130px;
+  
+  
+  margin: 4px 35px;
+
   text-align: center;
   font-size: 16px;
-  margin: 4px 2px;
   transform: scale(1.3);
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.Buttons:hover {
+  background-color: rgb(187, 160, 111);
 }
 
 </style>
