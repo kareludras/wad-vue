@@ -3,7 +3,7 @@
       <h1 class = "nameText">PostIt</h1>
       <nav>
         <router-link to="/" class="nav-link">Home</router-link> |
-        <router-link to="/signup" class="nav-link">Sign up</router-link>
+        <router-link to="/contacts" class="nav-link">Contacts</router-link>
       </nav>
     </header>
   </template>
@@ -20,6 +20,7 @@ header {
   position: sticky; top: 0;
   margin-bottom: 5px;
   padding-right: 90px;
+  z-index: 2;
 }
 
 header nav {

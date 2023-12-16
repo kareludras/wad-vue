@@ -12,11 +12,6 @@ export default new Vuex.Store({
         post.likes++;
       }
     },
-    resetLikes(state) {
-      state.posts.forEach(post => {
-        post.likes = 0;
-      });
-    }
   },
   actions: {
     likePost({ commit }, idOfPost) {
