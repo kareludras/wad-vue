@@ -87,6 +87,21 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
+app.post('/auth/posts', async (req, res) => {
+    const { body } = req.body;
+
+    try {
+        await pool.query('INSERT INTO posts (body, date) VALUES ($1, TO_CHAR(NOW(), \'DD. FMMMM YYYY\'))', [body,date]);
+
+        res
+            .status(201)
+            .send;
+    } catch (error) {
+        console.error('Error adding post:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 app.post('/auth/login', async(req, res) => {
     try {
         console.log("a login request has arrived");

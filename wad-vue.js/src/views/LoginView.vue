@@ -10,12 +10,12 @@
         <div class="textFields">
           <div class="email">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Email" v-model="email" />
+            <input type="text" id="email" name="email" placeholder="Email" required v-model="email" />
           </div>
   
           <div class="password">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" v-model="password" />
+            <input type="password" id="password" name="password" placeholder="Password" required v-model="password" />
           </div>
         </div>
   
