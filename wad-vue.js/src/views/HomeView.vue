@@ -1,6 +1,6 @@
 <template>
   <div class = "body">
-    <button class="Buttons">Log Out</button>
+    <button class="Buttons" v-if = "authResult" @click="Logout">Log Out</button>
     <div class="posts">
       <Post v-for="post in getPosts" :key="post.id" :post="post" />
     </div>
@@ -16,6 +16,7 @@ import { mapGetters, mapActions } from 'vuex';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Post from '@/components/Post.vue';
+import auth from "../auth";
 
 export default {
   components: {
@@ -29,6 +30,8 @@ export default {
   methods: {
     ...mapActions(['resetLikes']) 
   },
+
+  // SIIA VAJA STUFF LISADA
   
 }
 </script>

@@ -18,8 +18,10 @@ export default {
     Footer,
     Header,
     Post,
-  },
+  },  
 };
+
+
 </script>
 
 <style>

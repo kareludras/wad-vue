@@ -10,17 +10,17 @@
       <div class="textFields">
         <div class="email">
           <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="Email" v-model="email" @input="checkFields" />
+          <input type="text" id="email" name="email" placeholder="Email" required v-model="email" @input="checkFields" />
         </div>
 
         <div class="password">
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Password" v-model="password" @input="checkFields" />
+          <input type="password" id="password" name="password" placeholder="Password" required v-model="password" @input="checkFields" />
         </div>
       </div>
 
       <div class="signUp">
-        <button class="signUpButton" type="submit" :disabled="!areFieldsValid">Sign Up</button>
+        <button class="signUpButton" :disabled="!areFieldsValid" @click="SignUp">Sign Up</button>
       </div>
     </form>
   </div>
@@ -39,10 +39,30 @@ export default {
     };
   },
   methods: {
-    signUp() {
-      if (this.isPasswordValid) {
-        this.$router.push("/");
-      }
+    SignUp() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data);
+      this.$router.push("/");
+      //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
     checkFields() {
       this.isPasswordLengthValid = this.password.length > 0;
