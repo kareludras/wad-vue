@@ -19,6 +19,7 @@ import Post from '@/components/Post.vue';
 import auth from "../auth";
 
 export default {
+  name: "HomeView",
   components: {
     Header,
     Footer,
@@ -31,9 +32,32 @@ export default {
     ...mapActions(['resetLikes']) 
   },
 
-  // SIIA VAJA STUFF LISADA
-  
-}
+  Logout() {
+      fetch("http://localhost:3000/auth/logout", {
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log('jwt removed');
+        //console.log('jwt removed:' + auth.authenticated());
+        this.$router.push("/login");
+        //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error logout");
+      });
+    },
+
+    mounted() {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then(data => this.posts = data)
+        .catch(err => console.log(err.message))
+    }
+
+};
 </script>
 
 
