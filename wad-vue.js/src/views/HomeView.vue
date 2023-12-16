@@ -25,14 +25,18 @@ export default {
     Footer,
     Post
   },
+    data: function() {
+      return {
+        posts: [ ],
+        authResult: auth.authenticated()
+      }
+    },
   computed: {
     ...mapGetters(['getPosts']) 
   },
   methods: {
-    ...mapActions(['resetLikes']) 
-  },
-
-  Logout() {
+    ...mapActions(['resetLikes']) ,
+    Logout() {
       fetch("http://localhost:3000/auth/logout", {
           credentials: 'include', //  Don't forget to specify this if you need cookies
       })
@@ -49,6 +53,9 @@ export default {
         console.log("error logout");
       });
     },
+  },
+
+  
 
     mounted() {
         fetch('https://jsonplaceholder.typicode.com/posts')
