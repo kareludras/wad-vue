@@ -3,15 +3,48 @@
         <div class="addPostBox">
             <div class="postBody">
                 <p>Post body</p>
-                <textarea class="textField"></textarea>
+                <textarea class="textField" v-model="text" @input="checkFields"></textarea>
             </div>
 
             <div class="createPost">
-                <button class="createPostButton">Create post</button>
+                <button class="createPostButton" @click="addPost" :disabled="!isTextValid">Create post</button>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            text: '',
+            isTextValid: false,
+        };
+    },
+    methods: {
+        async addPost() {
+            if (this.isTextValid) {
+                try {
+                    const response = await fetch('http://localhost:3000/api/posts', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ body: this.text }),
+                    });
+
+                } catch (error) {
+                    console.error('Error adding post:', error);
+                    alert('An error occurred while adding the post');
+                }
+            }
+        },
+        checkFields() {
+            this.isTextValid = this.text.trim().length > 0;
+        },
+    },
+};
+</script>
 
 <style scoped>
 
