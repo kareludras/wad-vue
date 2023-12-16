@@ -1,14 +1,12 @@
 <template>
   <div class = "body">
-    <div class="section">
-       <div class="posts">
-            <Post v-for="post in getPosts" :key="post.id" :post="post" />
-        </div>
+    <div class="posts">
+      <Post v-for="post in getPosts" :key="post.id" :post="post" />
     </div>
   </div>
   <div class="resetLikesButton">
     <button @click="resetLikes">Reset likes</button>
-        </div>
+  </div>
 </template>
 
 <script>
@@ -35,28 +33,6 @@ export default {
 
 
 <style scoped>
-section {
-    display: flex; 
-    justify-content: space-around; 
-    min-height: 400px; 
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 15px;
-    
-    
-    
-}
-
-.posts {
-    width: auto; 
-    padding: 20px; 
-    
-    display: flex; 
-    flex-direction: column; 
-    max-width: 700px;
-    border-top: 15px #fff7eb solid;
-    border-radius: 5%;
-}
 
 .body {
     display: flex;
@@ -65,44 +41,24 @@ section {
     margin: 0;
     margin-bottom: 35px;
     align-items: center;
-    
-}
-
-.post-header-actions {
-    display: flex;
-    max-width: 50px; 
-}
-
-.post-image {
-    display: flex;
-    min-width: 320px;
-    max-width: 330px;
-}
-
-.post-content {
-    display: flex;
-    max-width: 330px;
-    
-    
-}
-
-.post-image ~ .post-content {
-    -webkit-text-size-adjust: auto;
-    font-family: 'Young Serif', serif;
 }
 
 .resetLikesButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -40px;
+    margin-top: -50px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
-
-
-.resetLikes {
-    align-items: center;
+.resetLikesButton button{
+  background-color:rgb(187, 169, 136);
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transform: scale(1.3);
 }
 
 </style>

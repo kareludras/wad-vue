@@ -17,7 +17,7 @@ header {
   align-items: center;
   display: flex;
   height: 25px;
-  position: sticky;
+  position: sticky; top: 0;
   margin-bottom: 5px;
   padding-right: 90px;
 }
