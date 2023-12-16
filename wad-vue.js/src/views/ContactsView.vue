@@ -1,4 +1,5 @@
 <template>
+    <div class="body">
     <div class="ContactsBody">
         <div class="ContactsBox">
             <b>This is a contacts page</b>
@@ -8,10 +9,33 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <style scoped>
 
+.body {
+  background: linear-gradient(-45deg, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
+  background-size:  400% 400%;
+  animation: gradient 20s ease infinite;
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
 .ContactsBox b{
     font-size: 30px;
 }
