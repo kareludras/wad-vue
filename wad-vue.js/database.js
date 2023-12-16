@@ -2,7 +2,7 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool({
     user: "postgres",
-    password: "", //add your password
+    password: "sql", //add your password
     database: "testWad",
     host: "localhost",
     port: "5432"
@@ -38,3 +38,6 @@ execute(createTblQuery).then(result => {
 });
 
 module.exports = pool;
+
+
+
