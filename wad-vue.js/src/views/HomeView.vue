@@ -8,7 +8,7 @@
       <div class="post">
         <div class="post-header">
           <div class="firstRow">
-            <img v-if="post.profilepic" :src="post.profilepic" width="50" height="50" alt="Profile picture" class="profilepic">
+            <img  src="https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true" width="50" height="50" alt="Profile picture" class="profilepic">
             <div class="post-info">
               <p class="createtime">{{ post.date }}</p>
             </div>
@@ -26,8 +26,9 @@
   </div>
 </template>
 
+
 <script>
-import { mapGetters, mapActions } from 'vuex';
+
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Post from '@/components/Post.vue';
@@ -46,34 +47,39 @@ export default {
         authResult: auth.authenticated()
       }
     },
-  computed: {
-    ...mapGetters(['getPosts']) 
-  },
   methods: {
-    ...mapActions(['resetLikes']) ,
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
-          credentials: 'include', //  Don't forget to specify this if you need cookies
+        credentials: 'include',
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
-        this.$router.push("/login");
-        //location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error logout");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          console.log('jwt removed');
+          this.$router.push("/login");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error logout");
+        });
+    },
+    DeleteAll() {
+      try {
+        fetch('http://localhost:3000/auth/deleteall', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log('All posts deleted successfully');
+        location.assign("/");
+      } catch (error) {
+        console.error('Error occurred when deleting posts:', error.message);
+      }
     },
   },
-
-  
-
     mounted() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('http://localhost:3000/auth/posts')
         .then((response) => response.json())
         .then(data => this.posts = data)
         .catch(err => console.log(err.message))
@@ -111,9 +117,9 @@ export default {
 }
 
 button{
-	border: none;
-	font: inherit;
-	cursor: pointer;
+    border: none;
+    font: inherit;
+    cursor: pointer;
 }
 
 .Buttons{
@@ -123,8 +129,8 @@ button{
   border-radius: 5px;
   padding: 10px 15px;
   width: 130px;
-  
-  
+
+
   margin: 4px 35px;
 
   text-align: center;
@@ -158,7 +164,7 @@ button{
   background-color: #f5e1c4;
   width: auto;
   padding: 20px;
-  min-width:200px;
+  min-width:330px;
   max-width: 700px;
   border-radius: 15%;
 }

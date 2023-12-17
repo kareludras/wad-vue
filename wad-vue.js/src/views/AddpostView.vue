@@ -7,7 +7,7 @@
             </div>
 
             <div class="createPost">
-                <button class="createPostButton" @click="addPost" :disabled="!isTextValid">Create post</button>
+                <button class="createPostButton" @click="addPost">Create post</button>
             </div>
         </div>
     </div>
@@ -22,27 +22,56 @@ export default {
         };
     },
     methods: {
-        async addPost() {
-            if (this.isTextValid) {
-                try {
-                    const response = await fetch('http://localhost:3000/auth/posts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ body: this.text }),
-                    });
+    addPost() {
+        var data = this.text
+      
+      if (this.isTextValid) {
+        fetch("http://localhost:3000/auth/addpost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data);
+      this.$router.push("/");
+      //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
+    
 
-                } catch (error) {
-                    console.error('Error adding post:', error);
-                    alert('An error occurred while adding the post');
-                }
-            }
-        },
-        checkFields() {
-            this.isTextValid = this.text.trim().length > 0;
-        },
+
+
+
+
+
+          /*if (response.ok) {
+            
+            console.log('Post added successfully');
+            
+          } else {
+            console.log(body)
+            throw new Error(`Server error: ${response.status} - ${response.statusText}`);
+            
+          }
+        } catch (error) {
+          console.error('Error adding post:', error.message || error);
+          alert('An error occurred while adding the post');
+        }*/
+        
+        location.assign('/');
+      }
     },
+    checkFields() {
+      this.isTextValid = this.text.trim().length > 0;
+    },
+  },
 };
 </script>
 
