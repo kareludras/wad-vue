@@ -17,6 +17,19 @@ const routes = [
     }
   },
   {
+    path: "/posts/:id",
+    name: "post",
+    component: () => import('../views/PostView.vue'),
+    beforeEnter: async(to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
+    }
+  },
+  {
     path: '/signup',
     name: 'signup',
     component: () => import('../views/SignupView.vue')

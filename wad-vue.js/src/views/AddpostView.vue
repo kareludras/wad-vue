@@ -35,8 +35,7 @@ export default {
       })
       .then((data) => {
       console.log(data);
-      this.$router.push("/");
-      //location.assign("/");
+      location.assign("/");
       })
       .catch((e) => {
         console.log(e.message);

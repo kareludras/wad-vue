@@ -5,7 +5,7 @@
 
     </div>
     <div class="post-list" v-for="post in posts"   :key="post.index">
-      <div class="post">
+      <div class="post" @click="redirectToPostPage(post.id)">
         <div class="post-header">
           <div class="firstRow">
             <img  src="https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true" width="50" height="50" alt="Profile picture" class="profilepic">
@@ -72,10 +72,14 @@ export default {
           },
         });
         console.log('All posts deleted successfully');
+        //this.$router.push("/");
         location.assign("/");
       } catch (error) {
         console.error('Error occurred when deleting posts:', error.message);
       }
+    },
+    redirectToPostPage(postId) {
+      this.$router.push(`/posts/${postId}`);
     },
   },
     mounted() {
@@ -167,6 +171,7 @@ button{
   min-width:330px;
   max-width: 700px;
   border-radius: 15%;
+  cursor: pointer;
 }
 
 .post-header {
