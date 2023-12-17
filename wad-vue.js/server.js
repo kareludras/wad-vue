@@ -167,7 +167,7 @@ app.get('/auth/posts', async (req, res) => {
 app.get('/auth/posts/:id', async(req, res) => {
     try {
         console.log("get a post with route parameter  request has arrived");
-        const { id } = req.params;
+        const {id} = req.id;
         const posts = await pool.query(
             'SELECT * FROM posts WHERE id = $1', [id]
         );
@@ -176,3 +176,16 @@ app.get('/auth/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 });
+
+app.delete('/auth/posts/:id', async(req, res) => {
+    try {
+        const {id} = req.id;
+        const deletePostRequest = await pool.query(
+            "DELETE FROM posts WHERE id = $1 RETURNING*", [id]
+        );
+        res.json(deletePostRequest);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+

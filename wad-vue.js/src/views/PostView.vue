@@ -8,7 +8,7 @@
 
             <div class="ButtonField">
                 <button class="Button" @click="">Update</button>
-                <button class="Button" @click="">Delete</button>
+                <button class="Button" @click="deletePost">Delete</button>
             </div>
         </div>
     </div>
@@ -46,7 +46,17 @@ export default {
 
     },
     deletePost() {
-
+        fetch(`http://localhost:3000/auth/posts/${this.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+          .then((response) => {
+            this.$router.push("/");
+            console.log("Successfully deleted")
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
     },
     checkFields() {
       this.isTextValid = this.text.trim().length > 0;
