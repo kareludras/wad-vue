@@ -102,6 +102,21 @@ app.post('/auth/addpost', async (req, res) => {
     }
 });
 
+app.put('/auth/posts/:id', async (req, res) => {
+    try {
+        const { text, id } = req.body;
+        console.log("update request has arrived");
+        const update = await pool.query(
+            "UPDATE posts SET body = $1 WHERE id = $2 RETURNING *",
+            [text, id]
+        );
+        res.json(update);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+
 app.use(express.json());
 
 app.post('/auth/login', async(req, res) => {
@@ -167,7 +182,7 @@ app.get('/auth/posts', async (req, res) => {
 app.get('/auth/posts/:id', async(req, res) => {
     try {
         console.log("get a post with route parameter  request has arrived");
-        const {id} = req.id;
+        const { id } = req.params;
         const posts = await pool.query(
             'SELECT * FROM posts WHERE id = $1', [id]
         );
@@ -179,7 +194,7 @@ app.get('/auth/posts/:id', async(req, res) => {
 
 app.delete('/auth/posts/:id', async(req, res) => {
     try {
-        const {id} = req.id;
+        const { id } = req.params;
         const deletePostRequest = await pool.query(
             "DELETE FROM posts WHERE id = $1 RETURNING*", [id]
         );

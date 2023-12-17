@@ -36,8 +36,8 @@ export default {
       this.$router.push("/");
       //location.assign("/");
       })
-      .catch((e) => {
-        console.log(e.message);
+      .catch((error) => {
+        console.log(error.message);
         console.log("error");
       });
     },

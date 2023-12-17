@@ -7,7 +7,7 @@
             </div>
 
             <div class="ButtonField">
-                <button class="Button" @click="">Update</button>
+                <button class="Button" @click="updatePost" >Update</button>
                 <button class="Button" @click="deletePost">Delete</button>
             </div>
         </div>
@@ -35,16 +35,40 @@ export default {
         .then((data) => {
             this.text = data.body;
         })
-        .catch((err) => {
-            console.error(`Error fetching post: ${err.message}`);
+        .catch((error) => {
+            console.error(`Error fetching post: ${error.message}`);
         });
     },
 
 
 
     updatePost() {
+    var data = { text: this.text, id: this.id };
+    console.log('Updating post with data:', data);
 
-    },
+    fetch(`http://localhost:3000/auth/posts/${this.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Failed to update post. Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((updatedPost) => {
+        console.log("Successfully updated the post:", updatedPost);
+        this.$router.push("/");
+    })
+    .catch((error) => {
+        console.error("Error updating post:", error);
+    });
+},
+
+
     deletePost() {
         fetch(`http://localhost:3000/auth/posts/${this.id}`, {
         method: "DELETE",
