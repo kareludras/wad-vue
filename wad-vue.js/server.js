@@ -88,17 +88,14 @@ app.post('/auth/signup', async(req, res) => {
 });
 
 app.post('/auth/addpost', async (req, res) => {
-    const body  = req;
-
     try {
+        const { text } = req.body;
         const posts = await pool.query( // insert the user and the hashed password into the database
-            "INSERT INTO posts(body, date) values ($1, NOW()) RETURNING*", [body]
+        "INSERT INTO posts(body,date) values ($1, TO_CHAR(CURRENT_DATE,'DD. Month YYYY')) RETURNING*", [text]
         );
-        console.log(posts.rows[0].id);
         res
             .status(201)
-            .json({ user_id: posts.rows[0].id })
-            .send;
+            .send();
     } catch (error) {
         console.error('Error adding post:', error);
         res.status(500).json({ message: 'Internal server error' });

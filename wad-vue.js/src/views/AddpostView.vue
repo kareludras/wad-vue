@@ -22,51 +22,26 @@ export default {
         };
     },
     methods: {
-    addPost() {
-        var data = this.text
-      
-      if (this.isTextValid) {
-        fetch("http://localhost:3000/auth/addpost", {
+      addPost() {
+        var data = {text: this.text};
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/auth/addpost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-          credentials: 'include', //  Don't forget to specify this if you need cookies
+          //credentials: 'include', //  Don't forget to specify this if you need cookies
           body: JSON.stringify(data),
       })
-      .then((response) => response.json())
       .then((data) => {
       console.log(data);
       this.$router.push("/");
       //location.assign("/");
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
         console.log("error");
       });
-    
-
-
-
-
-
-
-          /*if (response.ok) {
-            
-            console.log('Post added successfully');
-            
-          } else {
-            console.log(body)
-            throw new Error(`Server error: ${response.status} - ${response.statusText}`);
-            
-          }
-        } catch (error) {
-          console.error('Error adding post:', error.message || error);
-          alert('An error occurred while adding the post');
-        }*/
-        
-        location.assign('/');
-      }
     },
     checkFields() {
       this.isTextValid = this.text.trim().length > 0;
