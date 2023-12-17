@@ -25,7 +25,7 @@ export default {
         async addPost() {
             if (this.isTextValid) {
                 try {
-                    const response = await fetch('http://localhost:3000/api/posts', {
+                    const response = await fetch('http://localhost:3000/auth/posts', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

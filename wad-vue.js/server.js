@@ -92,7 +92,6 @@ app.post('/auth/posts', async (req, res) => {
 
     try {
         await pool.query('INSERT INTO posts (body, date) VALUES ($1, TO_CHAR(NOW(), \'DD. FMMMM YYYY\'))', [body,date]);
-
         res
             .status(201)
             .send;

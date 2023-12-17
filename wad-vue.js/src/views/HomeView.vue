@@ -2,12 +2,27 @@
   <div class = "body">
     <button class="Buttons" v-if = "authResult" @click="Logout">Log Out</button>
     <div class="posts">
-      <Post v-for="post in getPosts" :key="post.id" :post="post" />
+
+    </div>
+    <div class="post-list" v-for="post in posts"   :key="post.index">
+      <div class="post">
+        <div class="post-header">
+          <div class="firstRow">
+            <img v-if="post.profilepic" :src="post.profilepic" width="50" height="50" alt="Profile picture" class="profilepic">
+            <div class="post-info">
+              <p class="createtime">{{ post.date }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>{{ post.body }}</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="buttonsField">
     <router-link to="/addpost" class="Buttons">Add Post</router-link>
-    <button class="Buttons">Delete All</button>
+    <button class="Buttons" @click="DeleteAll">Delete All</button>
   </div>
 </template>
 
@@ -122,6 +137,52 @@ button{
 
 .Buttons:hover {
   background-color: rgb(187, 160, 111);
+}
+
+.firstRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.firstRow p {
+  font-weight: 600;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-bottom: 35px;
+  margin-top: 15px;
+  background-color: #f5e1c4;
+  width: auto;
+  padding: 20px;
+  min-width:200px;
+  max-width: 700px;
+  border-radius: 15%;
+}
+
+.post-header {
+  margin-bottom: 10px;
+}
+
+.post-content {
+  display: flex;
+  max-width: 100%;
+  word-break: break-word;
+  font-size: 18px;
+}
+
+.profilepic {
+  max-width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.createtime {
+  font-weight: 600;
+  margin: 0;
 }
 
 </style>
