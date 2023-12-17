@@ -2,7 +2,22 @@
   <div class = "body">
     <button class="Buttons" v-if = "authResult" @click="Logout">Log Out</button>
     <div class="posts">
-      <Post v-for="post in getPosts" :key="post.id" :post="post" />
+
+    </div>
+    <div class="post-list" v-for="post in posts"   :key="post.index">
+      <div class="post">
+        <div class="post-header">
+          <div class="firstRow">
+            <img  src="https://github.com/M1ngiii/WAD-homework/blob/main/root/src/img/default-photo.png?raw=true" width="50" height="50" alt="Profile picture" class="profilepic">
+            <div class="post-info">
+              <p class="createtime">{{ post.date }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>{{ post.body }}</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="buttonsField">
@@ -11,8 +26,9 @@
   </div>
 </template>
 
+
 <script>
-import { mapGetters, mapActions } from 'vuex';
+
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Post from '@/components/Post.vue';
@@ -31,11 +47,7 @@ export default {
         authResult: auth.authenticated()
       }
     },
-  computed: {
-    ...mapGetters(['getPosts']) 
-  },
   methods: {
-    ...mapActions(['resetLikes']) ,
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
         credentials: 'include',
@@ -67,7 +79,7 @@ export default {
     },
   },
     mounted() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('http://localhost:3000/auth/posts')
         .then((response) => response.json())
         .then(data => this.posts = data)
         .catch(err => console.log(err.message))
@@ -105,9 +117,9 @@ export default {
 }
 
 button{
-	border: none;
-	font: inherit;
-	cursor: pointer;
+    border: none;
+    font: inherit;
+    cursor: pointer;
 }
 
 .Buttons{
@@ -117,8 +129,8 @@ button{
   border-radius: 5px;
   padding: 10px 15px;
   width: 130px;
-  
-  
+
+
   margin: 4px 35px;
 
   text-align: center;
@@ -131,6 +143,52 @@ button{
 
 .Buttons:hover {
   background-color: rgb(187, 160, 111);
+}
+
+.firstRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.firstRow p {
+  font-weight: 600;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-bottom: 35px;
+  margin-top: 15px;
+  background-color: #f5e1c4;
+  width: auto;
+  padding: 20px;
+  min-width:330px;
+  max-width: 700px;
+  border-radius: 15%;
+}
+
+.post-header {
+  margin-bottom: 10px;
+}
+
+.post-content {
+  display: flex;
+  max-width: 100%;
+  word-break: break-word;
+  font-size: 18px;
+}
+
+.profilepic {
+  max-width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.createtime {
+  font-weight: 600;
+  margin: 0;
 }
 
 </style>

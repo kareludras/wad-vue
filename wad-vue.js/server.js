@@ -87,20 +87,25 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
-app.post('/auth/posts', async (req, res) => {
-    const { body } = req.body;
+app.post('/auth/addpost', async (req, res) => {
+    const body  = req;
 
     try {
-        await pool.query('INSERT INTO posts (body, date) VALUES ($1, TO_CHAR(NOW(), \'DD. FMMMM YYYY\'))', [body,date]);
-
+        const posts = await pool.query( // insert the user and the hashed password into the database
+            "INSERT INTO posts(body, date) values ($1, NOW()) RETURNING*", [body]
+        );
+        console.log(posts.rows[0].id);
         res
             .status(201)
+            .json({ user_id: posts.rows[0].id })
             .send;
     } catch (error) {
         console.error('Error adding post:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+app.use(express.json());
 
 app.post('/auth/login', async(req, res) => {
     try {
@@ -148,5 +153,16 @@ app.delete('/auth/deleteall', async (req, res) => {
     } catch (error) {
         console.error('Error deleting posts:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
+app.get('/auth/posts', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM posts');
+        const posts = result.rows;
+        res.json(posts);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
