@@ -110,6 +110,7 @@ export default {
     max-width: 70%;
     min-height: 100px;
     height: 30vh;
+    margin-top: 50px;
 
     box-sizing: border-box;
 }
@@ -121,11 +122,13 @@ export default {
 
     flex-direction: row;
 
-    margin-top: -50px;
     padding: 20px;
     margin-bottom: 50px;
 }
 .Button{
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 120px;
     background-color:#b6d0de;
     transform: scale(1.3);
 }
