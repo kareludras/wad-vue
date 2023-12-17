@@ -34,7 +34,15 @@ const routes = [
   {
     path: '/addpost',
     name: 'addpost',
-    component: () => import('../views/AddpostView.vue')
+    component: () => import('../views/AddpostView.vue'),
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }
+  }
   }
 ]
 
