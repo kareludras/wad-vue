@@ -163,3 +163,16 @@ app.get('/auth/posts', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+app.get('/auth/posts/:id', async(req, res) => {
+    try {
+        console.log("get a post with route parameter  request has arrived");
+        const { id } = req.params;
+        const posts = await pool.query(
+            'SELECT * FROM posts WHERE id = $1', [id]
+        );
+        res.json(posts.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});

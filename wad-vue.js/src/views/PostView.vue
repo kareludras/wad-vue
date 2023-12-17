@@ -1,9 +1,9 @@
 <template>
     <div class="aPostBody">
         <div class="aPostBox">
-            <div class="postBody">
+            <div class="postBody" @click="">
                 <p>Post body</p>
-                <textarea type = "text" class="textField" required v-model="text" @input="checkFields"></textarea>
+                <textarea class="textField" required v-model="text" @input="checkFields"></textarea>
             </div>
 
             <div class="ButtonField">
@@ -25,19 +25,23 @@ export default {
     },
     methods: {
     fetchPost(id) {
-      var data = {
-        id: this.id,
-        body: this.text
-      };
-      fetch(`http://localhost:3000/auth/posts/${id}`)
-        //.then((response) => response.json())
-        .then((data) => {
-          //console.log(data.body);
-          this.text = data.body;
-          this.id = data.id;
+        fetch(`http://localhost:3000/auth/posts/${id}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch post. Status: ${response.status}`);
+            }
+            return response.json();
         })
-        .catch((err) => console.log(err.message));
+        .then((data) => {
+            this.text = data.body;
+        })
+        .catch((err) => {
+            console.error(`Error fetching post: ${err.message}`);
+        });
     },
+
+
+
     updatePost() {
 
     },
@@ -45,7 +49,6 @@ export default {
 
     },
     checkFields() {
-      console.log("id"+this.id);
       this.isTextValid = this.text.trim().length > 0;
     },
   },

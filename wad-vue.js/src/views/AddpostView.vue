@@ -3,7 +3,7 @@
         <div class="addPostBox">
             <div class="postBody">
                 <p>Post body</p>
-                <textarea type = "text" class="textField" v-model="text" @input="checkFields"></textarea>
+                <textarea class="textField" v-model="text" @input="checkFields"></textarea>
             </div>
 
             <div class="createPost">
@@ -24,18 +24,17 @@ export default {
     methods: {
       addPost() {
         var data = {text: this.text};
-      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
       fetch("http://localhost:3000/auth/addpost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-          //credentials: 'include', //  Don't forget to specify this if you need cookies
           body: JSON.stringify(data),
       })
       .then((data) => {
       console.log(data);
-      location.assign("/");
+      this.$router.push("/");
+      //location.assign("/");
       })
       .catch((e) => {
         console.log(e.message);
