@@ -3,7 +3,7 @@
         <div class="aPostBox">
             <div class="postBody">
                 <p>Post body</p>
-                <textarea class="textField" required v-model="text" @input="checkFields"></textarea>
+                <textarea type = "text" class="textField" required v-model="text" @input="checkFields"></textarea>
             </div>
 
             <div class="ButtonField">
@@ -25,8 +25,12 @@ export default {
     },
     methods: {
     fetchPost(id) {
+      var data = {
+        id: this.id,
+        body: this.text
+      };
       fetch(`http://localhost:3000/auth/posts/${id}`)
-        .then((response) => response.json())
+        //.then((response) => response.json())
         .then((data) => {
           //console.log(data.body);
           this.text = data.body;
@@ -41,6 +45,7 @@ export default {
 
     },
     checkFields() {
+      console.log("id"+this.id);
       this.isTextValid = this.text.trim().length > 0;
     },
   },

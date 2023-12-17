@@ -3,7 +3,7 @@
         <div class="addPostBox">
             <div class="postBody">
                 <p>Post body</p>
-                <textarea class="textField" v-model="text" @input="checkFields"></textarea>
+                <textarea type = "text" class="textField" v-model="text" @input="checkFields"></textarea>
             </div>
 
             <div class="createPost">
